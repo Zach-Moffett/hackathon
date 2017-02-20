@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<meta charset="utf-8">
+<title>Hackathon 2017</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="controllers/app.js"></script>
+</head>
+
+<body>
+
+
+<div class="full-width">
+	<div class="container">
+
+<div class='clear'>
+<div class='intro'>
+	<h1>World Series Situational Pitching Analysis</h1>
+	(for the benefit of batters)<br><br>
+	
+	The following application uses a pitcher's previous stats to give the batter knowledge of what pitch to expect given his current situation. The location zone is separated into 4 sections showing if the pitch will be outside/inside and high/low. Choosing the batter's hand filter is important as it will determine inside/outside pitches. 
+</div>
+	
+	
+	<img src='images/pitch-exp.png' class='pitch-exp'>
+	
+	</div>
+
+
+	<div id="result">
+		<div class="choose">
+			CHOOSE YOUR SITUATIONAL FILTERS AND CLICK SUBMIT TO SEE THE RESULTS
+		</div>
+	</div>
+
+	<div class="width-70">	
+	
+	<h2>Situation Filters</h2>
+		<br><br>
+	<div id="searchResult"></div>			
+		<div class="option-container filter-outs">
+			<label>OUTS</label>
+			<span class="filter-option selected" data-outs='any'>ANY</span>
+			<span class="filter-option" data-outs=0>0</span>
+			<span class="filter-option" data-outs=1>1</span>
+			<span class="filter-option" data-outs=2>2</span>				
+		</div>	
+		
+		<div class="option-container filter-balls">
+			<label>BALLS</label>
+			<span class="filter-option selected" data-balls='any'>ANY</span>
+			<span class="filter-option" data-balls=0>0</span>
+			<span class="filter-option" data-balls=1>1</span>
+			<span class="filter-option" data-balls=2>2</span>				
+			<span class="filter-option" data-balls=3>3</span>							
+		</div>	
+		
+		<div class="option-container filter-strikes">
+			<label>STRIKES</label>
+			<span class="filter-option selected" data-strikes='any'>ANY</span>
+			<span class="filter-option" data-strikes=0>0</span>
+			<span class="filter-option" data-strikes=1>1</span>
+			<span class="filter-option" data-strikes=2>2</span>				
+		</div>
+		
+		<div class="option-container filter-hand">
+			<label>BATTER HAND</label>
+			<span class="filter-option selected" data-hand='any'>ANY</span>
+			<span class="filter-option" data-hand='L'>L</span>
+			<span class="filter-option" data-hand='R'>R</span>
+		</div>	
+		
+		<div class="option-container filter-score">
+			<label>SCORE</label>
+			<span class="filter-option selected" data-score='any'>ANY</span>
+			<span class="filter-option" data-score='W'>WINNING</span>
+			<span class="filter-option" data-score='L'>LOSING</span>
+			<span class="filter-option" data-score='T'>TIED</span>
+		</div>		
+			
+		<div class="option-container filter-inning">
+			<label>INNING</label>
+			<span class="filter-option selected" data-inning='any'>ANY</span>
+			<span class="filter-option" data-inning=1>1</span>
+			<span class="filter-option" data-inning=2>2</span>
+			<span class="filter-option" data-inning=3>3</span>
+			<span class="filter-option" data-inning=4>4</span>
+			<span class="filter-option" data-inning=5>5</span>
+			<span class="filter-option" data-inning=6>6</span>
+			<span class="filter-option" data-inning=7>7</span>
+			<span class="filter-option" data-inning=8>8</span>
+			<span class="filter-option" data-inning=9>9</span>									
+	 						
+		</div>		
+	</div>
+	
+	<div class="width-30">
+		<div class="option-container">
+			<h2 class="baserunner">Baserunners</h2>
+			<div class="base base3" data-base='3'>3rd</div>	
+			<div class="base base2" data-base='2'>2nd</div>
+			<div class="base base1" data-base='1'>1st</div>
+		</div>
+
+<div class='base-info'>*Click base to add runner</div>
+	</div>		
+	
+
+<div id="submitSearch">SUBMIT</div>
+		
+		
+
+	</div>
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>
