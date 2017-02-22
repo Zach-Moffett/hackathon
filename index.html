@@ -7,11 +7,14 @@
 <title>Hackathon 2017</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-
 </head>
 
 <body>
 
+<div class="bg-loader">
+<div class='loader'>
+</div>
+</div>
 
 <div class="full-width">
 	<div class="container">
@@ -30,11 +33,7 @@
 	</div>
 
 
-	<div id="result">
-		<div class="choose">
-			CHOOSE YOUR SITUATIONAL FILTERS AND CLICK SUBMIT TO SEE THE RESULTS
-		</div>
-	</div>
+
 
 	<div class="width-70">	
 	
@@ -81,6 +80,7 @@
 			<span class="filter-option" data-score='T'>TIED</span>
 		</div>		
 			
+<!--
 		<div class="option-container filter-inning">
 			<label>INNING</label>
 			<span class="filter-option selected" data-inning='any'>ANY</span>
@@ -95,6 +95,7 @@
 			<span class="filter-option" data-inning=9>9</span>									
 	 						
 		</div>		
+-->
 	</div>
 	
 	<div class="width-30">
@@ -112,17 +113,25 @@
 <div id="submitSearch">SUBMIT</div>
 		
 		
+<div id="result">
+		<div class="choose">
+			CHOOSE YOUR SITUATIONAL FILTERS AND CLICK SUBMIT TO SEE THE RESULTS
+		</div>
+	</div>
 
 	</div>
-</div>
+
+	</div>
 
 
 
 
 
-
-<script type="text/javascript" language="javascript"  src="json/go1.js"></script>
+<script type="text/javascript" language="javascript"  src="json/data.js"></script>
 <script src="controllers/app.js"></script>
+
+
+
 
 </body>
 </html>
