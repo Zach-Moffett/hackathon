@@ -2,9 +2,9 @@
 pitchers = []
 nameId = []
 pitchTypes = ['CH', 'CU', 'FA', 'FT', 'FF', 'FC', 'SL', 'FS', 'SI', 'FO', 'KN', 'KC', 'GY', 'EP', 'PO', 'IN', 'AB', 'AS', 'UN']
-base1Filter = false;
-base2Filter = false;
-base3Filter = false;
+base1Filter = "FALSE";
+base2Filter = "FALSE";
+base3Filter = "FALSE";
 var bases = 'any';
 
 function pitchName(pitch) {
@@ -107,7 +107,7 @@ function pitchName(pitch) {
 		searchResult += "<option value='" + nameId[b].id + "'>" + nameId[b].name + "</option> "
 	}
 	
-	
+		$('.bg-loader').hide();
 	$('#searchResult').html(searchResult);
 	searchResult += '</select></div>'
 	// !get user input
@@ -119,9 +119,10 @@ function pitchName(pitch) {
 		var filterStrikes = $('.filter-strikes').find('.selected').data('strikes');
 		var filterHand = $('.filter-hand').find('.selected').data('hand');
 		var filterScore = $('.filter-score').find('.selected').data('score');
-		var filterInning = $('.filter-inning').find('.selected').data('inning');
+// 		var filterInning = $('.filter-inning').find('.selected').data('inning');
 		var pId = $('#selectPitcher').val();
 		var pitchersLength = Object.keys(pitchers).length
+		
 		// set/reset each type of pitch object
 		pitchTotals = []
 		pitchAvg = []
@@ -155,7 +156,7 @@ function pitchName(pitch) {
 		 
 		
 		// go through all pitches
-		
+				
 		for (i = 0; i < rawArray.length; i++) {
 		
 
@@ -163,40 +164,40 @@ function pitchName(pitch) {
 				totalPitches = 0;
 				totalStrikes = 0;
 				totalBalls = 0;
-				 	outs = rawArray[i][6]
-					base1 = rawArray[i][7];
-					base2 = rawArray[i][8];
-					base3 = rawArray[i][9];
-					
-					strikes = rawArray[i][6]
-					balls = rawArray[i][5]
+				 	outs = rawArray[i][5]
+					base1 = rawArray[i][6];
+					base2 = rawArray[i][7];
+					base3 = rawArray[i][8];
+					strikes = rawArray[i][4]
+					balls = rawArray[i][3]
 					hand = rawArray[i][0]
-					inning = rawArray[i][8]
-					if (rawArray[i][11] > rawArray[i][10]) {
+// 					inning = rawArray[i][9]
+					if (rawArray[i][10] > rawArray[i][9]) {
 						score = 'W'
-					} else if (rawArray[i][11] < rawArray[i][10]) {
+					} else if (rawArray[i][10] < rawArray[i][9]) {
 						score = 'L'
 					} else {
 						score = 'T'
 					}
 					// check the filters
-					if (base1Filter == false && base2Filter == false && base3Filter == false) {
+					if (base1Filter == "FALSE" && base2Filter == "FALSE" && base3Filter == "FALSE") {
 						bases = 'any';
 					} else {
 						bases = 'chosen'
 					}
 					
-					if ((outs == filterOuts || filterOuts == 'any') && (balls == filterBalls || filterBalls == 'any') && (strikes == filterStrikes || filterStrikes == 'any') && (hand == filterHand || filterHand == 'any') && (score == filterScore || filterScore == 'any') && (inning == filterInning || filterInning == 'any') && (base1 == base1Filter || bases == 'any') && (base2 == base2Filter || bases == 'any') && (base3 == base3Filter || bases == 'any')) {
+					if ((outs == filterOuts || filterOuts == 'any') && (balls == filterBalls || filterBalls == 'any') && (strikes == filterStrikes || filterStrikes == 'any') && (hand == filterHand || filterHand == 'any') && (score == filterScore || filterScore == 'any') && (base1 == base1Filter || bases == 'any') && (base2 == base2Filter || bases == 'any') && (base3 == base3Filter || bases == 'any')) {
 						
-						pType = rawArray[i][13]
-						v = rawArray[i][14];
-						sr = rawArray[i][15];
-						sd = rawArray[i][16];
-						xp = rawArray[i][17];
-						zp = rawArray[i][18];
-						szt = rawArray[i][19];
-						szb = rawArray[i][20];
-						
+						pType = rawArray[i][11]
+						v = rawArray[i][12];
+						sr = rawArray[i][13];
+						sd = rawArray[i][14];
+						xp = rawArray[i][15];
+						zp = rawArray[i][16];
+						szt = rawArray[i][17];
+						szb = rawArray[i][18];
+					 
+ 					 
 				for (b = 0; b < pitchTotals.length; b++) {
 					 	
 							if (pitchTotals[b].type === pType) {
@@ -293,15 +294,19 @@ function pitchName(pitch) {
 				hz2 = (pitchAvg[c].rh / pitchAvg[c].count);
 				hz3 = (pitchAvg[c].ll / pitchAvg[c].count);
 				hz4 = (pitchAvg[c].rl / pitchAvg[c].count);
-				output += "<div class='pitchTypeContainer'>" + "<h2 class='pitchType'> " + pitchName(pitchAvg[c].type) + "</h2>" + "<div class='pitchType avg'><h3>" + (numPitchAvg * 100).toFixed(1) + "%</h3></div>" + "<h2>Averages</h2>"+"<div class='pitchType'>Release Velocity: " + (pitchAvg[c].v).toFixed(1) + " mph</div>" + "<div class='pitchType'>Spin Rate (RPM): " + (pitchAvg[c].sr).toFixed(1) + "</div>" + "<div class='pitchType'>Spin Degree: " + (pitchAvg[c].sd).toFixed(1) + "</div>" + "<div class='pitchType'>Strike Probability: "/*  + Math.round(pitchAvg[c].prob*100) */ + "%</div><div class='pitchType'>Strike Zone Top: " + (pitchAvg[c].szt).toFixed(1) + "'</div>" + "<div class='pitchType'>Strike Zone Bottom: " + (pitchAvg[c].szb).toFixed(1) + "'</div>"  + "<div class='sz-container'><h2>Pitch Location</h2>" + "<div style='background-color:rgba(27,94,32," + (hz1 + .10) + "' class='zone' data-id='1' >" + (hz1 * 100).toFixed(1) + "%</div>" + "<div style='background-color:rgba(27,94,32," + (hz2 + .10) + "' class='zone' data-id='2' >" + (hz2 * 100).toFixed(1) + "%</div>" + "<div style='background-color:rgba(27,94,32," + (hz3 + .10) + "' class='zone' data-id='3' >" + (hz3 * 100).toFixed(1) + "%</div>" + "<div style='background-color:rgba(27,94,32," + (hz4 + .10) + "' class='zone' data-id='4' >" + (hz4 * 100).toFixed(1) + "%</div>" + "</div>" +
+				output += "<div class='pitchTypeContainer'>" + "<h2 class='pitchType'> " + pitchName(pitchAvg[c].type) + "</h2>" + "<div class='pitchType avg'><h3>" + (numPitchAvg * 100).toFixed(1) + "%</h3></div>" + "<h2>Averages</h2>" +"<div class='pitchType'>" + pitchName(pitchAvg[c].type) + "s Thrown: <b>" + pitchAvg[c].count + "</b>"  + "</div><div class='pitchType'>Release Velocity: " + (pitchAvg[c].v).toFixed(1) + " mph</div>" + "<div class='pitchType'>Spin Rate (RPM): " + (pitchAvg[c].sr).toFixed(1) + "</div>" + "<div class='pitchType'>Spin Degree: " + (pitchAvg[c].sd).toFixed(1) + "</div>" + "<div class='pitchType'>Strike Probability: "/*  + Math.round(pitchAvg[c].prob*100) */ + "%</div><div class='pitchType'>Strike Zone Top: " + (pitchAvg[c].szt).toFixed(1) + "'</div>" + "<div class='pitchType'>Strike Zone Bottom: " + (pitchAvg[c].szb).toFixed(1) + "'</div>"  + "<div class='sz-container'><h2>Pitch Location</h2>" + "<div style='background-color:rgba(27,94,32," + (hz1 + .10) + "' class='zone' data-id='1' >" + (hz1 * 100).toFixed(1) + "%</div>" + "<div style='background-color:rgba(27,94,32," + (hz2 + .10) + "' class='zone' data-id='2' >" + (hz2 * 100).toFixed(1) + "%</div>" + "<div style='background-color:rgba(27,94,32," + (hz3 + .10) + "' class='zone' data-id='3' >" + (hz3 * 100).toFixed(1) + "%</div>" + "<div style='background-color:rgba(27,94,32," + (hz4 + .10) + "' class='zone' data-id='4' >" + (hz4 * 100).toFixed(1) + "%</div>" + "</div>" +
  
 				"</div>";
+
 			} else {}
 		}
 		
 	if (output ==''){
 		output="There are no results that match your search. Please try different filters."
 	}	
+ 
+		
+
 		
 		$('#result').html(output)
 	})
@@ -316,13 +321,13 @@ $(document).on('click','.base', function() {
 		n = $(this).data('base')
 		switch (n) {
 		case 1:
-			base1Filter = false;
+			base1Filter = "FALSE";
 			break;
 		case 2:
-			base2Filter = false;
+			base2Filter = "FALSE";
 			break;
 		case 3:
-			base3Filter = false;
+			base3Filter = "FALSE";
 			break;
 		}
 	} else {
@@ -330,13 +335,13 @@ $(document).on('click','.base', function() {
 		n = $(this).data('base')
 		switch (n) {
 		case 1:
-			base1Filter = true;
+			base1Filter = "TRUE";
 			break;
 		case 2:
-			base2Filter = true;
+			base2Filter = "TRUE";
 			break;
 		case 3:
-			base3Filter = true;
+			base3Filter = "TRUE";
 			break;
 		}
 	}
