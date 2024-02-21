@@ -1,4 +1,5 @@
 // set variables
+test = [];
 pitchers = []
 nameId = []
 pitchTypes = ['CH', 'CU', 'FA', 'FT', 'FF', 'FC', 'SL', 'FS', 'SI', 'FO', 'KN', 'KC', 'GY', 'EP', 'PO', 'IN', 'AB', 'AS', 'UN']
